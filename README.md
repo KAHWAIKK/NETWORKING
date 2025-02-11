@@ -336,3 +336,31 @@ Step 1: PC1 Sends an ARP Request (Broadcast)
 Step 3: PC1 Updates Its ARP Table
 📌 PC1 stores PC2’s MAC address in its ARP cache for future communication.
 📌 Now, PC1 can send data to PC2 using Layer 2 (MAC) addresses.
+
+# CREATING A LAN NETWORK USING PACKET TRACER ACTIVITY.
+
+ Steps to Create a LAN in Packet Tracer
+1️⃣ Open Cisco Packet Tracer
+Launch Cisco Packet Tracer on your computer.
+2️⃣ Add Networking Devices
+Select Devices from the bottom panel:
+Switch (e.g., 2960 switch)
+PCs or Laptops (End devices)
+3️⃣ Connect the Devices
+Use cables to connect:
+PCs to the switch using Copper Straight-Through cables.
+Click a PC ➝ Click the FastEthernet0 port ➝ Click the Switch ➝ Select an available FastEthernet port.
+4️⃣ Assign IP Addresses
+Click on each PC ➝ Go to Desktop ➝ Click IP Configuration.
+Assign static IP addresses (for example):
+PC1: 192.168.1.2 / Subnet: 255.255.255.0
+PC2: 192.168.1.3 / Subnet: 255.255.255.0
+5️⃣ Test Connectivity
+Open Command Prompt in one PC (Desktop > Command Prompt).
+Use the ping command
+
+Basic LAN Network Diagram
+
+  [PC1] ----|
+            |----[Switch]----[PC3]
+  [PC2] ----|
