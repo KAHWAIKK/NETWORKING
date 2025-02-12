@@ -364,3 +364,157 @@ Basic LAN Network Diagram
   [PC1] ----|
             |----[Switch]----[PC3]
   [PC2] ----|
+
+
+# Common TCP and UDP Port Numbers
+
+Ports are categorized into well-known ports (0-1023), registered ports (1024-49151), and dynamic/private ports (49152-65535). Below are some of the most commonly used TCP and UDP ports:
+
+1. Well-Known Ports (0-1023)
+   
+Port Protocol	Description
+20	TCP	FTP (Data Transfer)
+21	TCP	FTP (Control)
+22	TCP	SSH (Secure Shell)
+23	TCP	Telnet (Unsecure Remote Login)
+25	TCP	SMTP (Simple Mail Transfer Protocol)
+53	TCP/UDP	DNS (Domain Name System)
+67	UDP	DHCP (Server)
+68	UDP	DHCP (Client)
+69	UDP	TFTP (Trivial File Transfer Protocol)
+80	TCP	HTTP (Web Traffic)
+88	TCP/UDP	Kerberos Authentication
+110	TCP	POP3 (Post Office Protocol v3)
+119	TCP	NNTP (Network News Transfer Protocol)
+123	UDP	NTP (Network Time Protocol)
+137-139	TCP/UDP	NetBIOS (Name, Datagram, and Session Services)
+143	TCP	IMAP (Internet Message Access Protocol)
+161-162	UDP	SNMP (Simple Network Management Protocol)
+179	TCP	BGP (Border Gateway Protocol)
+389	TCP/UDP	LDAP (Lightweight Directory Access Protocol)
+443	TCP	HTTPS (Secure Web Traffic)
+465	TCP	SMTPS (Secure SMTP)
+514	UDP	Syslog
+636	TCP/UDP	LDAPS (Secure LDAP)
+993	TCP	IMAPS (Secure IMAP)
+995	TCP	POP3S (Secure POP3)
+
+
+1. Registered Ports (1024-49151)
+   
+Port Number	Protocol	Description
+1433-1434	TCP/UDP	Microsoft SQL Server
+1521	TCP	Oracle Database
+3306	TCP	MySQL Database
+3389	TCP	RDP (Remote Desktop Protocol)
+5060-5061	TCP/UDP	SIP (Session Initiation Protocol)
+5900-5901	TCP	VNC (Virtual Network Computing)
+8080	TCP	HTTP Alternative Port
+
+
+3. Dynamic/Private Ports (49152-65535)
+   
+These are temporary ports assigned for client-side communications in applications such as web browsing, VoIP, and online gaming.
+Examples:
+49152-65535: Ephemeral ports used dynamically by applications like Skype, Zoom, and web services.
+
+ # Socket Pairs
+The source and destination ports are placed within the segment. The segments are then encapsulated within an IP packet. The IP packet contains the IP address of the source and destination. The combination of the source IP address and source port number, or the destination IP address and destination port number is known as a socket.
+
+In the example in the figure, the PC is simultaneously requesting FTP and web services from the destination server.
+
+# Netstat Command 
+
+Unexplained TCP connections can pose a major security threat. They can indicate that something or someone is connected to the local host. Sometimes it is necessary to know which active TCP connections are open and running on a networked host. Netstat is an important network utility that can be used to verify those connections. As shown below, enter the command netstat to list the protocols in use, the local address and port numbers, the foreign address and port numbers, and the connection state.
+
+Basic netstat Commands
+Command	Description
+
+1.netstat	Shows all active connections (both incoming and outgoing).
+2.netstat -a	Displays all active and listening ports.
+3.netstat -n	Shows IP addresses and port numbers instead of resolving hostnames.
+4.netstat -p <protocol>	Filters results for a specific protocol (TCP/UDP). Example: netstat -p tcp
+5.netstat -r	Displays the routing table (similar to route command).
+6.netstat -i	Shows network interfaces and statistics (Linux/macOS).
+7.netstat -s	Displays summary statistics for each protocol (TCP, UDP, ICMP, etc.).
+
+# URI, URN, and URL
+Web resources and web services such as RESTful APIs are identified using a Uniform Resource Identifier (URI). A URI is a string of characters that identifies a specific network resource. As shown in the figure, a URI has two specializations:
+
+Uniform Resource Name (URN) - This identifies only the namespace of the resource (web page, document, image, etc.) without reference to the protocol.
+Uniform Resource Locator (URL) - This defines the network location of a specific resource on the network. HTTP or HTTPS URLs are typically used with web browsers. Other protocols such as FTP, SFTP, SSH, and others can be used as a URL. A URL using SFTP might look like: sftp://sftp.example.com.
+These are the parts of a URI, as shown in the figure:
+
+Protocol/scheme - HTTPS or other protocols such as FTP, SFTP, mailto, and NNTP
+Hostname - w​ww.example.com
+Path and file name - /author/book.html
+Fragment - #page155
+
+# NETWORK APPLICATION Services
+
+Examples of Network Application Services in Use
+Web Browsing → Uses HTTP/HTTPS (Google Chrome, Firefox)
+Email Communication → Uses SMTP/IMAP/POP3 (Gmail, Outlook)
+File Sharing → Uses FTP/SFTP (Google Drive, Dropbox)
+Remote Desktop → Uses RDP/SSH/Telnet (Microsoft Remote Desktop, PuTTY)
+DNS Resolution → Converts google.com to an IP address via DNS
+VoIP Calling → Uses SIP/RTP (Zoom, WhatsApp Calls)
+
+# Syntax Checker - The nslookup Command
+When you manually configure a device for network connectivity, recall that you also include a DNS server address. For home networks, this configuration is typically handled by DHCP running on the home router. Your ISP provides the DNS server address to your home router, and then your home router uses DHCP to send the configuration to all the devices connected to its network. When you type the name for a website, such as www.cisco.com, the DNS client running on your device first asks the DNS server for the IP address, such as 172.230.155.162, before sending out your HTTP request.
+
+You can use the command nslookup to discover the IP addresses for any domain name. In this Syntax Checker activity, practice entering the nslookup command in both Windows and Linux.
+
+# Overview of Troubleshooting Commands
+A number of software utility programs are available that can help identify network problems. Most of these utilities are provided by the operating system as command line interface (CLI) commands. The syntax for the commands may vary between operating systems.
+
+Some of the available utilities include:
+
+ipconfig - Displays IP configuration information.
+ping - Tests connections to other IP hosts.
+netstat - Displays network connections.
+tracert - Displays the route taken to the destination.
+nslookup - Directly queries the name server for information on a destination domain.
+
+# The ipconfig Command
+
+When a device does not get an IP address, or has an incorrect IP configuration, it cannot communicate on the network or access the internet. On Windows devices, you can view the IP configuration information with the ipconfig command at the command prompt. The ipconfig command has several options that are helpful including /all, /release, and /renew.
+
+# PING COMMAND
+
+The ping command is used to test network connectivity between two devices by sending ICMP (Internet Control Message Protocol) Echo Request packets and measuring response times.
+
+# Basic Syntax
+
+ping [options] destination
+
+destination: Can be an IP address (e.g., 8.8.8.8) or a domain name (e.g., google.com).
+
+# Basic Ping Test
+
+ping google.com
+
+Sends packets to google.com and waits for a response.
+Helps check if a host is reachable.
+
+When a ping is sent to an IP address, a packet known as an echo request is sent across the network to the IP address specified. If the destination host receives the echo request, it responds with a packet known as an echo reply. If the source receives the echo reply, connectivity is verified by the reply from the specific IP address. The ping is not successful if a message such as request timed out or general failure appears.
+
+If a ping command is sent to a name, such as ww​w.cisco.com, a packet is first sent to a DNS server to resolve the name to an IP address. After the IP address is obtained, the echo request is forwarded to the IP address and the process proceeds. If a ping to the IP address succeeds, but a ping to the name does not, there is most likely a problem with DNS.
+
+ # Ping Results
+If ping commands to both the name and IP address are successful, but the user is still unable to access the application, then the problem most likely resides in the application on the destination host. For example, it may be that the requested service is not running.
+
+If neither ping is successful, then network connectivity along the path to the destination is most likely the problem. If this occurs, it is common practice to ping the default gateway. If the ping to the default gateway is successful, the problem is not local. If the ping to the default gateway fails, the problem resides on the local network.
+
+In some cases, the ping may fail but network connectivity is not the problem. A ping may fail due to the firewall on the sending or receiving device, or a router along the path that is blocking the pings.
+
+The basic ping command usually issues four echoes and waits for the replies to each one. It can, however, be modified to increase its usefulness. The options listed in the figure display additional features available.
+
+# SUMMARY OF NETWORK TESTING utilities
+
+Command	Function
+tracert (A)	Displays the route taken to the destination.
+ping (B)	Tests connections to other IP hosts.
+netstat (C)	Displays network connections.
+nslookup (D)	Directly queries the name server for information on a destination domain.
+ipconfig (E)	Displays IP configuration information.
